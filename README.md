@@ -8,13 +8,21 @@ MW(my wallet) is a terminal application for documenting personal finance.
 for usage MW(my wallet):
 * for create user in MW(my wallet):
 ```
-mw --login <username> <password> <gmail>
+mw --R <username> <password> 
 
 # example:
-mw --login mohammad 12345678 mohammadhoseinajorloo76@gmail.com
+mw --R mohammad 12345678 
 
 ```
 
+* for login user in MW(my wallet):
+```
+mw --L <username> <password> 
+
+# example:
+mw --L mohammad 12345678 
+
+```
 ## Contributing
 
 Pull requests are welcome. For major changes, please open an issue first

@@ -1,8 +1,7 @@
 class User:
-    def __init__(self, name, password, mail):
+    def __init__(self, name, password):
         self.name = name
         self.password = password
-        self.mail = mail
 
     def info(self):
-        return "username: {}, password: {}, mail : {}".format(self.name, self.password, self.mail)
+        return "username: {}, password: {}".format(self.name, self.password)
