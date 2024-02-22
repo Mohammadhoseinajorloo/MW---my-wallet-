@@ -1,4 +1,5 @@
-from user import User
+from src.user import User
+from src.bank import Bank
 from arg_parser import args
 
 def rejester():
@@ -59,8 +60,8 @@ def login():
     else:
         print("please enter username and password!")
 
-        
-
+def bank():
+   name_bank = args.Add-band[0] 
 
 if __name__ == "__main__":
     login()
