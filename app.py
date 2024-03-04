@@ -1,67 +1,91 @@
 from src.user import User
-from src.bank import Bank
-from arg_parser import args
+import pytermgui as ptg
 
-def rejester():
-    db = open("user.txt", "r")
-    username = args.Rejester[0]
-    password = args.Rejester[1]
-    d = []
-    f = []
+
+def rejester(db_path):
+    """
+    """
+    db = open(db_path, "r")
+
+    username = input("Create Username : ")
+    password = input("Create Password : ")
+    password_confirm = input("Confirm Password : ")
+
+    username_list = []
+    password_list = []
     for i in db:
-        user , pas = i.split(",")
-        pas = pas.strip()
-        d.append(user)
-        f.append(pas)
-    data = dict(zip(d, f))
+        usernme, password = i.split(",")
+        password = password.strip()
+        username_list.append(username)
+        password_list.append(password)
 
-    if len(password)<6:
-        print("Password too short, restart!")
-        pass
 
-    elif username in d:
-        print("username exists")
+    if password != password_confirm:
+        print("The password do not mach")
+        rejester(db_path)
+
+
+    elif len(password)<8:
+        print("The password is short")
+        rejester(db_path)
+
+
+    elif username in username_list:
+        print("There is username")
+        rejester(db_path)
+
 
     else:
-        user = User(username, password)
-        db = open("user.txt", "a")
-        db.write(username + "," + password +"\n")
-        print("Success!")
+        user = User(username, password) 
+        db = open(db_path, "a")
+        db.write(username+","+password+"\n")
+        print("Hi, ", username)
 
-def login():
-    username = args.Login[0]
-    password = args.Login[1]
-
-    if not len(username or password)<1:
-        db = open("user.txt", "r")
-        d = []
-        f = []
-        for i in db:
-            user , pas = i.split(",")
-            pas = pas.strip()
-            d.append(user)
-            f.append(pas)
-        data = dict(zip(d, f))
-        
-        try:
-            if data[username]:
-                try:
-                    if password == data[username]:
-                        print("Login Success!")
-                        print("Hi,", username)
-                    else:
-                        print("Password or username inccorect!")
-                except:
-                    print("Password or username inccorect!")
-            else:
-                print("username dos`t exists")
-        except:
-            print("Login error!")
-    else:
-        print("please enter username and password!")
-
-def bank():
-   name_bank = args.Add-band[0] 
 
 if __name__ == "__main__":
-    login()
+
+    db_path = "database/user.txt"
+
+    CONFIG = """
+    config:
+        InputField:
+            styles:
+                prompt: dim italic
+                cursor: '@72'
+        Label:
+            styles:
+                value: dim bold
+
+        Window:
+            styles:
+                border: '60'
+                corner: '60'
+
+        Container:
+            styles:
+                border: '96'
+                corner: '96'
+    """
+
+    with ptg.YamlLoader() as loader:
+        loader.load(CONFIG)
+
+
+    with ptg.WindowManager() as manager:
+
+        # TODO: find icon and gretting and about for app
+        icon = ptg.Container("💰", box="EMPTY")
+        gretting = "gretting massage"
+        about = ptg.Label("about(title & massage)", position=1)
+
+        buttons  = (["SingUp", lambda *_: rejester(db_path)], ["Login", lambda *_: rejester(db_path)], ["Exit", lambda *_: manager.stop()])
+
+        container = ptg.Container(about)
+
+        window = ptg.Window(icon, gretting, container, buttons)
+        window.set_title("[210 bold]my wallet")
+        window.center()
+
+        window.select(0)
+
+        manager.add(window)

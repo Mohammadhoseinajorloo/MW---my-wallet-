@@ -1,3 +1,7 @@
+*.png
 .MWenv/
 __pycache__/
-user.txt
+database/
+nohup.out
+src/__pycache__/
+

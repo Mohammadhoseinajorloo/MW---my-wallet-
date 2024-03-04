@@ -1,2 +1,6 @@
-parse==1.20.1
-parse==1.20.1
+PyTermGUI==7.7.1
+PyYAML==6.0.1
+typing_extensions==4.9.0
+wcwidth==0.2.13
+.Mwenv/
+.Mwenv/

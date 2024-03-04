@@ -1,28 +1,12 @@
 # MW - (my wallet)
 
-MW(my wallet) is a terminal application for documenting personal finance.
+MW(my wallet) is a terminal application for documenting persenal finance.
 
-## Installation
+## Installatien
 
 ## Usage
-for usage MW(my wallet):
-* for create user in MW(my wallet):
-```
-mw --R <username> <password> 
 
-# example:
-mw --R mohammad 12345678 
-
-```
-
-* for login user in MW(my wallet):
-```
-mw --L <username> <password> 
-
-# example:
-mw --L mohammad 12345678 
-
-```
+For more information see the [manual](Doc/manual.md).
 ## Contributing
 
 Pull requests are welcome. For major changes, please open an issue first
